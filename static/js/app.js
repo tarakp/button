@@ -34,8 +34,7 @@ function init() {
 
 // Create a function to handle the change in the dropdown box
 function optionChanged(newID) {
-    // Call the Functions created below 
-    // d3.selectAll("#sample-metadata").value="";
+    
     
     buildtable(newID);
     plotbar(newID);
