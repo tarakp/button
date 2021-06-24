@@ -201,7 +201,8 @@ function plotbubble(ID) {
                 size: sampleValue2,
                 color: OtuIDs
             },
-            text:otulabels
+            text:otulabels,
+            
         };
 
         data1 = [trace2];
@@ -211,7 +212,8 @@ function plotbubble(ID) {
             xaxis:{title: "ID - OTU"},
             height: 600,
             width: 1000,
-            title: `All Sample Values for ID - ${subjectid}`
+            title: {text : `All Sample Values for ID - ${subjectid}`} 
+                    
         }
         
 
@@ -248,6 +250,9 @@ function buildGauge(ID) {
     
       var washData = finaldata.wfreq;
       console.log(washData);
+
+      var subjectid = finaldata.id;
+      console.log(subjectid);
        
     
       var data3 = [
@@ -256,7 +261,7 @@ function buildGauge(ID) {
         type: "indicator",
         mode: "gauge+number+needle",
         value: washData,
-        title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
+        title: { text: `Belly Button Washing Frequency for ID - ${subjectid}`, font: { size: 20 } },
         
         // delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
         gauge: {
@@ -302,6 +307,7 @@ function buildGauge(ID) {
     font: { color: "darkblue", family: "Arial" }
   };
   
+  //   Plot Gauge Chart
   Plotly.newPlot('gauge', data3, layout3);
     });
 };
