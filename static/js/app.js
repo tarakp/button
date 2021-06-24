@@ -24,18 +24,11 @@ function init() {
         };
         
     });
-
-    // buildtable();
-    // plotbar();
-    // plotbubble();
-    // buildGauge();
 };
 
 
 // Create a function to handle the change in the dropdown box
 function optionChanged(newID) {
-    
-    
     buildtable(newID);
     plotbar(newID);
     plotbubble(newID);
@@ -123,15 +116,14 @@ function plotbar(ID) {
         var otuLabels = finalsample.otu_labels.slice(0, 10).reverse();
         console.log(otuLabels.reverse());
         
-
-        // var sampleID = finalsample.id.slice(0, 10);
-        // console.log(sampleID);
+        var subjectid = finalsample.id;
+        console.log(subjectid)
+        
 
 
         // Create Bar Chart from the above data//////
 
         var trace1 = {
-        
             x: sampleValues,
             y: outid1,
             text: otuLabels,
@@ -141,7 +133,9 @@ function plotbar(ID) {
         var data = [trace1];
     
         var layout = {
-            title: "OTU - Top 10",
+            title: `Top 10 OTU for ID - ${subjectid}`,
+            
+            xaxis: {title : "Sample Values"},
             yaxis:{
                 tickmode:"linear",
             },
@@ -156,6 +150,8 @@ function plotbar(ID) {
     Plotly.newPlot("bar", data, layout);
     });
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Create a function to plot barchart
 function plotbubble(ID) {
@@ -191,6 +187,9 @@ function plotbubble(ID) {
         var otulabels = finalfilterdata.otu_labels;
         console.log(otulabels)
 
+        var subjectid = finalfilterdata.id;
+        console.log(subjectid)
+
         // Create a bubble chart
         
         trace2 = {
@@ -209,16 +208,21 @@ function plotbubble(ID) {
 
         // set the layout for the bubble plot
         var layout1 = {
-            xaxis:{title: "OTU ID"},
-                height: 600,
-                width: 1000
-        };
+            xaxis:{title: "ID - OTU"},
+            height: 600,
+            width: 1000,
+            title: `All Sample Values for ID - ${subjectid}`
+        }
+        
 
         Plotly.newPlot("bubble", data1, layout1)
     });  
     
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Create a Gauge Chart /////////////////////////////
 // create a function for pulling the metadata for Subject ID
 function buildGauge(ID) {
     
